@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceSmall"
         android:text="Small Text"
+        android:id="@+id/nameTextView"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"/>
 

@@ -62,7 +62,7 @@ public class QuestionDetailListAdapter extends BaseAdapter {
             String body = mQuestion.getBody();
             String name = mQuestion.getName();
 
-            TextView bodyTextView = (TextView)convertView.findViewById(R.id.nameTextView);
+            TextView bodyTextView = (TextView)convertView.findViewById(R.id.bodyTextView);
             bodyTextView.setText(body);
 
             TextView nameTextView = (TextView)convertView.findViewById(R.id.nameTextView);

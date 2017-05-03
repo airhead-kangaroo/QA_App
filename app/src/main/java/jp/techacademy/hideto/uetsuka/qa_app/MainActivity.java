@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
             if(answerMap != null){
                 for(Object key : answerMap.keySet()){
                     HashMap temp = (HashMap)answerMap.get((String)key);
-                    String answerBody = (String)answerMap.get("body");
-                    String answerName = (String)answerMap.get("name");
-                    String answerUid = (String)answerMap.get("uid");
+                    String answerBody = (String)temp.get("body");
+                    String answerName = (String)temp.get("name");
+                    String answerUid = (String)temp.get("uid");
                     Answer answer = new Answer(answerBody,answerName,answerUid,(String)key);
                     answerArrayList.add(answer);
                 }
@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
                     if(answerMap != null){
                         for(Object key : answerMap.keySet()){
                             HashMap temp = (HashMap)answerMap.get((String)key);
-                            String answerBody = (String)answerMap.get("body");
-                            String answerName = (String)answerMap.get("name");
-                            String answerUid = (String)answerMap.get("uid");
+                            String answerBody = (String)temp.get("body");
+                            String answerName = (String)temp.get("name");
+                            String answerUid = (String)temp.get("uid");
                             Answer answer = new Answer(answerBody,answerName,answerUid,(String)key);
                             question.getAnswers().add(answer);
                         }
