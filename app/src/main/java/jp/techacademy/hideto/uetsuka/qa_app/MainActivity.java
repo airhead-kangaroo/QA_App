@@ -28,7 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private ArrayList<Question> mQuestionArrayList;
     private QuestionListAdapter mAdapter;
+    private NavigationView navigationView;
 
     private ChildEventListener mEventListener = new ChildEventListener() {
         @Override
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -166,6 +166,9 @@ public class MainActivity extends AppCompatActivity {
                 }else if(id == R.id.nav_compter){
                     mToolbar.setTitle("コンピューター");
                     mGenre = 4;
+                }else if(id == R.id.nav_favorite){
+                    Intent intent = new Intent(MainActivity.this, FavoriteViewActivity.class);
+                    startActivity(intent);
                 }
 
                 DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -183,7 +186,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            Menu menu = navigationView.getMenu();
+            MenuItem menuItem = menu.findItem(R.id.nav_favorite);
+            menuItem.setEnabled(false);
+        }
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         mListView = (ListView)findViewById(R.id.listView);
@@ -223,5 +230,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Menu menu = navigationView.getMenu();
+        MenuItem menuItem = menu.findItem(R.id.nav_favorite);
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            menuItem.setEnabled(false);
+        }else{
+            menuItem.setEnabled(true);
+        }
     }
 }

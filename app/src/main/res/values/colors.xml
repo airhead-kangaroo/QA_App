@@ -5,4 +5,6 @@
     <color name="colorAccent">#009688</color>
     <color name="colorButtonText">#ffffff</color>
     <color name="imageViewBGC">#d3d3d3</color>
+    <color name="notYetFavorite">#ffff33</color>
+    <color name="Favorited">#999999</color>
 </resources>
