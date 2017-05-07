@@ -74,10 +74,11 @@ public class QuestionDetailActivity extends AppCompatActivity implements View.On
         }
     };
 
+    //お気に入り登録済みの場合はボタンをグレーアウトし、押せなくする処理。
+    // 初期読み込み時にグレーアウトするまでやや時間差あるのが課題
     private ChildEventListener mFavoriteEventListener = new ChildEventListener() {
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-            //Toast.makeText(QuestionDetailActivity.this, dataSnapshot.getValue().toString(),Toast.LENGTH_LONG).show();
             HashMap data = (HashMap)dataSnapshot.getValue();
             if(mQuestion.getQuestionUid().equals(data.get("QuestionUid"))){
                 Button favoriteBtn = (Button)QuestionDetailActivity.this.findViewById(R.id.favoriteButton);

@@ -186,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        //デフォルトではドロワーの『お気に入り一覧』は表示となっているが、未ログイン状態だと、非表示にする処理
+
         if(FirebaseAuth.getInstance().getCurrentUser() == null){
             Menu menu = navigationView.getMenu();
             MenuItem menuItem = menu.findItem(R.id.nav_favorite);
@@ -232,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //ユーザーのログイン状態変更に伴い、動的に『お気に入り一覧』の表示を切り替えるために、onResumeで処理を行う
     @Override
     protected void onResume() {
         super.onResume();
